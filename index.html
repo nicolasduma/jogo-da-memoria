@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +8,21 @@
     <title>Jogo da Memória</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
-    <div id="card-01" class="card" data-icon="bootstrap">
+    <div id="game-bord">
 
-        <div class="card-front">
-            <img class="card-icon" class src="assets/images/bootstrap.png" alt="logo bootstrap">
-        </div>
+        <div id="card-01" class="card" data-icon="bootstrap">
 
-        <div class="card-back">
-            &lt;/&gt;
+            <div class="card-front">
+                <img class="card-icon" class src="assets/images/bootstrap.png" alt="logo bootstrap">
+            </div>
+
+            <div class="card-back">
+                &lt;/&gt;
+            </div>
+
         </div>
 
     </div>
@@ -25,6 +31,7 @@
         <p>Parabéns, você completou o jogo!</p>
         <button onclick="restartGame()">Jogar Novamente</button>
     </div>
-    
+
 </body>
+
 </html>

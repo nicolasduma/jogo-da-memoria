@@ -14,6 +14,15 @@ const technologies = [
     "react",
 ]
 
+let cards = null
+
+startGame()
+
+function startGame() {
+    cards = createCardsFromTecnologies()
+    shuffleCards(cards)
+}
+
 function createCardsFromTecnologies() {
     let cards = []
 
@@ -34,4 +43,16 @@ function createCardsFromTecnologies() {
     }
 
     return cards
+}
+
+function shuffleCards(cards) {
+    let currentIndex = cards.length
+    let randomIndex = 0
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.round(Math.random() * currentIndex)
+        currentIndex--
+
+        [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]]
+    }
 }

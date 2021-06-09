@@ -48,5 +48,31 @@ function createCardContent(card, cardElement) {
 }
 
 function flipCard() {
-    this.classList.add("flip")
+
+    if (game.setCard(this.id)) {
+        console.log(game.cards)
+
+        this.classList.add("flip")
+
+        if (game.secondCard) {
+            if (game.checkPair()) {
+
+                game.clearCards()
+
+        } else {
+
+                setTimeout(() => {
+
+                    document.getElementById(game.firstCard.id).classList.remove("flip")
+                    document.getElementById(game.secondCard.id).classList.remove("flip")
+
+                    game.unflipCards()
+
+                }, 800)
+
+            }
+        }
+
+    }
+
 }

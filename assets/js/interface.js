@@ -27,6 +27,7 @@ function createCardFace(face, card, element) {
 
 function initializeBord(cards) {
     let gameBord = document.getElementById("game-bord")
+    gameBord.innerHTML = ""
 
     for (let card of cards) {
         let cardElement = document.createElement("div")
@@ -50,16 +51,24 @@ function createCardContent(card, cardElement) {
 function flipCard() {
 
     if (game.setCard(this.id)) {
-        console.log(game.cards)
+        console.log(game.lockMode)
 
         this.classList.add("flip")
 
         if (game.secondCard) {
+
             if (game.checkPair()) {
 
                 game.clearCards()
 
-        } else {
+                if (game.checkGameOver()) {
+                    setTimeout (() => {
+                        document.getElementById("game-over").classList.remove("d-none")
+                        document.getElementById("game-over").classList.add("d-flex")
+                    }, 400)
+                }
+
+            } else {
 
                 setTimeout(() => {
 
@@ -75,4 +84,12 @@ function flipCard() {
 
     }
 
+}
+
+function restartGame() {
+    game.clearCards()
+    startGame()
+
+    document.getElementById("game-over").classList.remove("d-flex")
+    document.getElementById("game-over").classList.add("d-none")
 }

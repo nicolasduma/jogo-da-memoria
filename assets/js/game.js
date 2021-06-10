@@ -13,9 +13,11 @@ let game = {
         "react",
     ],
 
-    cards: [],
+    cards: null,
 
     createCardsFromTecnologies: function() {
+        this.cards = []
+
         for (let technology of this.technologies) {
             this.cards.push(
                 {
@@ -56,9 +58,12 @@ let game = {
     setCard: function(id) {
 
         let card = this.cards.filter(card => card.id === id)[0]
+        console.log(card)
 
         if (card.flipped || this.lockMode) {
+
             return false
+
         }
 
         if (!this.firstCard) {
@@ -70,10 +75,10 @@ let game = {
         } else {
 
             this.secondCard = card
-            this.firstCard.flipped = true
-            lockMode = true
+            this.secondCard.flipped = true
+            this.lockMode = true
             return true
-            
+                
         }
 
     },
@@ -98,6 +103,10 @@ let game = {
         this.secondCard.flipped = false
 
         this.clearCards()
-    }
+    },
+
+    checkGameOver: function() {
+        return this.cards.filter(card => !card.flipped).length === 0 ? true : false
+    },
 
 }

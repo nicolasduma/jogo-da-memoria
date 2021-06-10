@@ -62,13 +62,23 @@ function flipCard() {
                 game.clearCards()
 
                 if (game.checkGameOver()) {
+
+                    playSound("board-complete")
+
                     setTimeout (() => {
                         document.getElementById("game-over").classList.remove("d-none")
                         document.getElementById("game-over").classList.add("d-flex")
                     }, 400)
+
+                } else {
+
+                    playSound("cards-are-pair")
+
                 }
 
             } else {
+
+                playSound("cards-not-are-pair")
 
                 setTimeout(() => {
 
@@ -92,4 +102,30 @@ function restartGame() {
 
     document.getElementById("game-over").classList.remove("d-flex")
     document.getElementById("game-over").classList.add("d-none")
+}
+
+function playSound(typeSound) {
+    setTimeout(() => {
+        try {
+
+            if (typeSound === "cards-not-are-pair") {
+    
+                document.getElementById("sound-of-cards-not-are-pair").play()
+    
+            } else if (typeSound === "cards-are-pair") {
+
+                document.getElementById("sound-of-cards-are-pair").play()                
+
+            } else if (typeSound === "board-complete") {
+    
+                document.getElementById("sound-of-board-complete").play()
+    
+            } 
+    
+        } catch {
+    
+            return
+    
+        }
+    }, 100)
 }

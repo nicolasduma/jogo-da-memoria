@@ -1,10 +1,53 @@
 const front = "card-front"
 const back = "card-back"
 
+let currentMovements = 0
+
+let allGamesMovements = []
+let movementLowerOfAll = null
+
+let salvedMovemet = localStorage.getItem("movementLowerOfAll")
+
+if (salvedMovemet != "null") {
+    salvedMovemet = parseInt(salvedMovemet)
+    document.getElementById("best-game-moviments").innerText = salvedMovemet
+}
+
 startGame()
 
 function startGame() {
     initializeBord(game.createCardsFromTecnologies())
+    currentMovements = 0
+    document.getElementById("current-game-movements").innerText = currentMovements
+}
+
+function updateTimer(time) {
+    document.getElementById("time-left").innerText = time
+}
+
+function checkBestMovement() {
+
+    allGamesMovements.push(currentMovements)
+    
+    if (salvedMovemet == "null") {
+        salvedMovemet = currentMovements
+    }
+
+    movementLowerOfAll = allGamesMovements.reduce(checkLowerNumber, salvedMovemet)
+
+    while (allGamesMovements.length > 0) {
+        allGamesMovements.pop()
+    }
+
+    allGamesMovements.push(movementLowerOfAll)
+
+    localStorage.setItem("movementLowerOfAll", movementLowerOfAll)
+
+    document.getElementById("best-game-moviments").innerText = movementLowerOfAll
+}
+
+function checkLowerNumber(total, element) {
+    return total < element ? total : element
 }
 
 function createCardFace(face, card, element) {
@@ -51,11 +94,14 @@ function createCardContent(card, cardElement) {
 function flipCard() {
 
     if (game.setCard(this.id)) {
-        console.log(game.lockMode)
 
         this.classList.add("flip")
 
         if (game.secondCard) {
+
+            currentMovements++
+
+            document.getElementById("current-game-movements").innerText = currentMovements
 
             if (game.checkPair()) {
 
@@ -64,6 +110,10 @@ function flipCard() {
                 if (game.checkGameOver()) {
 
                     playSound("board-complete")
+
+                    document.getElementById("total-game-movements").innerText = currentMovements
+
+                    checkBestMovement()
 
                     setTimeout (() => {
                         document.getElementById("game-over").classList.remove("d-none")

@@ -11,6 +11,21 @@
 
 <body>
 
+    <div id="conteiner-statistics">
+
+        <h2>Estatísticas</h2>
+
+        <div id="current-game-statistics">
+            <h2>Tempo retante: <span id="time-left">5</span></h2>
+            <h2>Número de movimentos: <span id="current-game-movements">0</span></h2>
+        </div>
+
+        <div id="best-game-statistics">
+            <h2>Melhor jogada: <span id="best-game-moviments">0</span></h2>
+        </div>
+
+    </div>
+
     <div id="game-bord">
 
 
@@ -18,7 +33,7 @@
     </div>
 
     <div id="game-over" class="d-none">
-        <p>Parabéns, você completou o jogo!</p>
+        <p>Parabéns, você completou o jogo com <span id="total-game-movements">0</span> movimentos!</p>
         <button onclick="restartGame()">Jogar Novamente</button>
     </div>
 

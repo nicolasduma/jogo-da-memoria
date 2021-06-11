@@ -50,6 +50,25 @@ let game = {
         }
     },
 
+    timer: function(time, callback) {
+        let interval = setInterval(() => {
+            time--
+            callback(time)
+
+            if (time > 0) {
+
+                return false
+
+            } else {
+
+                clearInterval(interval)
+                return true
+
+            }
+
+        }, 1000)
+    },
+
     lockMode: false,
 
     firstCard: null,
@@ -58,7 +77,6 @@ let game = {
     setCard: function(id) {
 
         let card = this.cards.filter(card => card.id === id)[0]
-        console.log(card)
 
         if (card.flipped || this.lockMode) {
 
@@ -74,9 +92,9 @@ let game = {
 
         } else {
 
+            this.lockMode = true
             this.secondCard = card
             this.secondCard.flipped = true
-            this.lockMode = true
             return true
                 
         }

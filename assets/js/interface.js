@@ -127,7 +127,7 @@ function flipCard() {
 
                     playSound("board-complete")
 
-                    document.getElementById("current-game-movements").innerText = currentMovements
+                    document.getElementById("total-game-movements").innerText = currentMovements
 
                     checkBestMovement()
 

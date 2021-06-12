@@ -50,22 +50,28 @@ let game = {
         }
     },
 
-    timer: function(time, callback) {
+    clearTimer: false,
+
+    timer: function(time, screenTime, gameOverByLoss) {
+        screenTime(time)
+
         let interval = setInterval(() => {
             time--
-            callback(time)
 
-            if (time > 0) {
+            if (!this.clearTimer) {
 
-                return false
+                screenTime(time)
+
+                if (time === 0) {
+                    clearInterval(interval)
+                    gameOverByLoss()
+                }
 
             } else {
 
                 clearInterval(interval)
-                return true
 
             }
-
         }, 1000)
     },
 

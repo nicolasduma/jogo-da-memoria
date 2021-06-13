@@ -8,7 +8,7 @@
 
    [Demo](#demo) •
    [About](#about-project) •
-   [Tecnologies](#technologies) •
+   [Technologies](#technologies) •
    [Getting started](#getting-started) •
    [License](#license)
 
